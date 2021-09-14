@@ -10,7 +10,7 @@ var upgradeRates = {
 
 function earnMoney() {
     gameData.money += gameData.moneyPerClick
-    document.getElementById("moneyEarned").innerHTML = gameData.money + " money earned"
+    updateText()
 }
 
 function increaseEarn() {
@@ -24,7 +24,12 @@ var saveGameLoop = window.setInterval(function() {
     localStorage.setItem("goldMinerSave", JSON.stringify(gameData))
 }, 15000)
 
+function updateText() {
+    document.getElementById("moneyEarned").innerHTML = gameData.money + " money earned"
+}
+
 var savegame = JSON.parse(localStorage.getItem("goldMinerSave"))
 if (savegame !== null) {
   gameData = savegame
+  updateText()
 }
